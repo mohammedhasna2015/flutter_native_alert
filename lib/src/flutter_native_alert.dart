@@ -6,8 +6,8 @@ import 'package:flutter/services.dart';
 /// Created by 枫儿 on 2021/5/2.
 /// @email：hsnndly@163.com
 class FlutterNativeAlert {
-  static FlutterNativeAlert _flutterNativeAlert;
-  static FlutterNativeAlert getInstance() {
+  static FlutterNativeAlert? _flutterNativeAlert;
+  static FlutterNativeAlert? getInstance() {
     if (_flutterNativeAlert == null) {
       _flutterNativeAlert = FlutterNativeAlert();
     }
@@ -48,12 +48,13 @@ class FlutterNativeAlert {
   /// [duration] 显示时长，默认1.5秒
   /// @author: 枫儿
   void showToast(
-    String text, {
-    Duration duration = const Duration(milliseconds: 1500),
-  }) async {
+      String text, {
+        Duration duration = const Duration(milliseconds: 1500),
+      }) async {
     await _channel.invokeMethod("showToast", {
       "text": text,
       "duration": duration.inMilliseconds,
     });
   }
 }
+
